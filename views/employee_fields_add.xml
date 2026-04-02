@@ -49,6 +49,11 @@
                 </group>
             </xpath>
 
+
+            <xpath expr="//page[@name='personal_information']//field[@name='spouse_complete_name']" position="after">
+                <field name="spouse_occupation"/>
+            </xpath>
+
         </field>
     </record>
 

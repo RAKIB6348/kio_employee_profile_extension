@@ -40,3 +40,5 @@ class HrEmployee(models.Model):
     driving_license_filename = fields.Char(string="Driving License Filename")
     others_certificate_file = fields.Binary(string="Others Certificate", attachment=True, groups="hr.group_hr_user")
     others_certificate_filename = fields.Char(string="Others Certificate Filename")
+
+    spouse_occupation = fields.Char(string="Spouse Occupation (optional)", help="Enter the occupation of the partner's spouse")
