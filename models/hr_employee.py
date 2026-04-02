@@ -42,3 +42,6 @@ class HrEmployee(models.Model):
     others_certificate_filename = fields.Char(string="Others Certificate Filename")
 
     spouse_occupation = fields.Char(string="Spouse Occupation (optional)", help="Enter the occupation of the partner's spouse")
+
+    total_dependents = fields.Integer(string="Total Dependents (number)", default=0,
+                                      help="Number of people dependent on this person")

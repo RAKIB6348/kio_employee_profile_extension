@@ -54,6 +54,10 @@
                 <field name="spouse_occupation"/>
             </xpath>
 
+            <xpath expr="//page[@name='personal_information']//field[@name='children']" position="after">
+                <field name="total_dependents"/>
+            </xpath>
+
         </field>
     </record>
 
