@@ -58,4 +58,4 @@ class HrEmployee(models.Model):
 
     total_dependents = fields.Integer(string="Total Dependents (number)", default=0,
                                       help="Number of people dependent on this person")
-    child_line_ids = fields.One2many("hr.employee.child", "employee_id", string="Education of Children (With Class and school name")
+    child_line_ids = fields.One2many("hr.employee.child", "employee_id", string="Name of the Children (With Gender)")

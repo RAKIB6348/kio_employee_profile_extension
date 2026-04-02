@@ -63,8 +63,6 @@
                     <tree editable="bottom">
                         <field name="name" string="Child Name"/>
                         <field name="gender"/>
-                        <field name="class_name"/>
-                        <field name="school_name"/>
                     </tree>
                 </field>
             </xpath>
