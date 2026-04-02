@@ -45,3 +45,7 @@ class HrEmployee(models.Model):
 
     total_dependents = fields.Integer(string="Total Dependents (number)", default=0,
                                       help="Number of people dependent on this person")
+    children_details = fields.Text(
+        string="Name of the Children (With Gender)",
+        help="Example: 1. Ayan Rahman (Male) 2. Sara Rahman (Female)",
+    )

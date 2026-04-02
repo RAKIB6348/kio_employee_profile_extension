@@ -58,6 +58,10 @@
                 <field name="total_dependents"/>
             </xpath>
 
+            <xpath expr="//page[@name='personal_information']//field[@name='total_dependents']" position="after">
+                <field name="children_details" placeholder="1. Ayan Rahman (Male)&#10;2. Sara Rahman (Female)"/>
+            </xpath>
+
         </field>
     </record>
 
