@@ -1,5 +1,18 @@
 from odoo import fields, models
 
+
+class HrEmployeeChild(models.Model):
+    _name = "hr.employee.child"
+    _description = "Employee Child"
+
+    employee_id = fields.Many2one("hr.employee", required=True, ondelete="cascade")
+    name = fields.Char(string="Child Name", required=True)
+    gender = fields.Selection(
+        [("male", "Male"), ("female", "Female"), ("other", "Other")],
+        string="Gender",
+    )
+
+
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
@@ -45,7 +58,4 @@ class HrEmployee(models.Model):
 
     total_dependents = fields.Integer(string="Total Dependents (number)", default=0,
                                       help="Number of people dependent on this person")
-    children_details = fields.Text(
-        string="Name of the Children (With Gender)",
-        help="Example: 1. Ayan Rahman (Male) 2. Sara Rahman (Female)",
-    )
+    child_line_ids = fields.One2many("hr.employee.child", "employee_id", string="Education of Children (With Class and school name")

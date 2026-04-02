@@ -22,7 +22,7 @@ Long description of module's purpose
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
 
         'views/employee_fields_add.xml',
         'views/employee_exisiting_field_string_change.xml',
