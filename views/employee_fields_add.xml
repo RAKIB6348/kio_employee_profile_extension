@@ -35,6 +35,20 @@
                 <field name="emergency_contact_relationship"/>
             </xpath>
 
+            <xpath expr="//page[@name='personal_information']/group" position="inside">
+                <group string="Documents Upload">
+                    <field name="resume_file" filename="resume_filename" />
+                    <field name="appointment_letter_file" filename="appointment_letter_filename" />
+                    <field name="contract_agreement_file" filename="contract_agreement_filename" />
+                    <field name="id_card" filename="id_card_filename" />
+                    <field name="passport_copy_file" filename="passport_copy_filename" />
+                    <field name="academic_certificates_file" filename="academic_certificates_filename" />
+                    <field name="photograph_file" filename="photograph_filename" />
+                    <field name="driving_license" filename="driving_license_filename"/>
+                    <field name="others_certificate_file" filename="others_certificate_filename"/>
+                </group>
+            </xpath>
+
         </field>
     </record>
 

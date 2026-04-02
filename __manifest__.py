@@ -24,12 +24,11 @@ Long description of module's purpose
     'data': [
         # 'security/ir.model.access.csv',
 
-        'views/employee_exisiting_field_string_change.xml',
         'views/employee_fields_add.xml',
+        'views/employee_exisiting_field_string_change.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
 }
-
