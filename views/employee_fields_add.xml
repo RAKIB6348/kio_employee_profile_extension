@@ -35,6 +35,18 @@
                 <field name="emergency_contact_relationship"/>
             </xpath>
 
+            <xpath expr="//page[@name='personal_information']//group[@name='emergency']" position="after">
+                <group string="Emergency Contact (Name, Relationship, Phone)">
+                    <field name="emergency_contact_line_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="relationship"/>
+                            <field name="phone"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+
             <xpath expr="//page[@name='personal_information']/group" position="inside">
                 <group string="Documents Upload">
                     <field name="resume_file" filename="resume_filename" />

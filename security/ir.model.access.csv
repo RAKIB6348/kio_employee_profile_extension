@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hr_employee_child_user,hr.employee.child user,model_hr_employee_child,hr.group_hr_user,1,1,1,1
 access_hr_employee_child_education_user,hr.employee.child.education user,model_hr_employee_child_education,hr.group_hr_user,1,1,1,1
+access_hr_employee_emergency_contact_user,hr.employee.emergency.contact user,model_hr_employee_emergency_contact,hr.group_hr_user,1,1,1,1

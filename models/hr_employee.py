@@ -23,6 +23,16 @@ class HrEmployeeChildEducation(models.Model):
     school_name = fields.Char(string="School Name")
 
 
+class HrEmployeeEmergencyContact(models.Model):
+    _name = "hr.employee.emergency.contact"
+    _description = "Employee Emergency Contact"
+
+    employee_id = fields.Many2one("hr.employee", required=True, ondelete="cascade")
+    name = fields.Char(string="Name", required=True)
+    relationship = fields.Char(string="Relationship")
+    phone = fields.Char(string="Phone")
+
+
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
@@ -73,4 +83,9 @@ class HrEmployee(models.Model):
         "hr.employee.child.education",
         "employee_id",
         string="Education of Children (With Class and School Name)",
+    )
+    emergency_contact_line_ids = fields.One2many(
+        "hr.employee.emergency.contact",
+        "employee_id",
+        string="Emergency Contact (Name, Relationship, Phone)",
     )
