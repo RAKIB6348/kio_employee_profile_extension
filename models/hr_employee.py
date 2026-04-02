@@ -33,6 +33,23 @@ class HrEmployeeEmergencyContact(models.Model):
     phone = fields.Char(string="Phone")
 
 
+class HrEmployeeQualification(models.Model):
+    _name = "hr.employee.qualification"
+    _description = "Employee Qualification"
+
+    employee_id = fields.Many2one("hr.employee", required=True, ondelete="cascade")
+    highest_education_level = fields.Char(string="Highest Education Level")
+    degree_certificate_name = fields.Char(string="Degree / Certificate Name")
+    institution_name = fields.Char(string="Institution Name")
+    passing_year = fields.Char(string="Passing Year")
+    major_subject = fields.Char(string="Major / Subject")
+    professional_training = fields.Selection(
+        [("yes", "Yes"), ("no", "No")],
+        string="Professional Training",
+    )
+    training_details = fields.Char(string="Training Details")
+
+
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
@@ -88,4 +105,9 @@ class HrEmployee(models.Model):
         "hr.employee.emergency.contact",
         "employee_id",
         string="Emergency Contact (Name, Relationship, Phone)",
+    )
+    qualification_line_ids = fields.One2many(
+        "hr.employee.qualification",
+        "employee_id",
+        string="Academic & Professional Qualifications",
     )

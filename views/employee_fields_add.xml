@@ -61,6 +61,22 @@
                 </group>
             </xpath>
 
+            <xpath expr="//page[@name='personal_information']//group" position="after">
+                <group string="Academic &amp; Professional Qualifications">
+                    <field name="qualification_line_ids">
+                        <tree editable="bottom">
+                            <field name="highest_education_level"/>
+                            <field name="degree_certificate_name"/>
+                            <field name="institution_name"/>
+                            <field name="passing_year"/>
+                            <field name="major_subject"/>
+                            <field name="professional_training"/>
+                            <field name="training_details"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+
 
             <xpath expr="//page[@name='personal_information']//field[@name='spouse_complete_name']" position="after">
                 <field name="spouse_occupation"/>
