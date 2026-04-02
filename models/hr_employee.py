@@ -13,6 +13,16 @@ class HrEmployeeChild(models.Model):
     )
 
 
+class HrEmployeeChildEducation(models.Model):
+    _name = "hr.employee.child.education"
+    _description = "Employee Child Education"
+
+    employee_id = fields.Many2one("hr.employee", required=True, ondelete="cascade")
+    name = fields.Char(string="Child Name", required=True)
+    class_name = fields.Char(string="Class")
+    school_name = fields.Char(string="School Name")
+
+
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
@@ -59,3 +69,8 @@ class HrEmployee(models.Model):
     total_dependents = fields.Integer(string="Total Dependents (number)", default=0,
                                       help="Number of people dependent on this person")
     child_line_ids = fields.One2many("hr.employee.child", "employee_id", string="Name of the Children (With Gender)")
+    child_education_line_ids = fields.One2many(
+        "hr.employee.child.education",
+        "employee_id",
+        string="Education of Children (With Class and School Name)",
+    )
