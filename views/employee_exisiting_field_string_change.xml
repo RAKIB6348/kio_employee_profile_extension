@@ -50,6 +50,10 @@
                 <attribute name="string">Spouse Name</attribute>
             </xpath>
 
+            <xpath expr="//field[@name='children']" position="attributes">
+                <attribute name="string">Total Children (number)</attribute>
+            </xpath>
+
 
 
 
