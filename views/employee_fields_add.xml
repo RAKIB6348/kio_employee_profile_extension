@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_employee_form_inherit_tab_field-add" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.tab.add.field</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+             <xpath expr="//page[@name='personal_information']//field[@name='private_email']" position="before">
+                <field name="staff_id"/>
+                <field name="full_name"/>
+                <field name="mother_name"/>
+                <field name="father_name"/>
+                <field name="date_of_joining"/>
+            </xpath>
+
+            <xpath expr="//page[@name='personal_information']//div[@class='o_address_format'][field[@name='private_street']]" position="after">
+                <label for="present_street" string="Present Address"/>
+                <div class="o_address_format">
+                    <field name="present_street" placeholder="Street..." class="o_address_street"/>
+                    <field name="present_street2" placeholder="Street 2..." class="o_address_street"/>
+                    <field name="present_city" placeholder="City" class="o_address_city"/>
+                    <field name="present_state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" context="{'default_country_id': present_country_id}"/>
+                    <field name="present_zip" placeholder="ZIP" class="o_address_zip"/>
+                    <field name="present_country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                </div>
+            </xpath>
+
+            <xpath expr="//page[@name='personal_information']//field[@name='private_phone']" position="after">
+                <field name="mobile_alt"/>
+            </xpath>
+
+            <xpath expr="//page[@name='personal_information']//field[@name='emergency_contact']" position="after">
+                <field name="emergency_contact_relationship"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
