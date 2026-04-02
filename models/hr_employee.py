@@ -61,6 +61,25 @@ class HrEmployee(models.Model):
     emergency_contact_relationship = fields.Char(string="Emergency Contact Relationship")
     date_of_joining = fields.Datetime(string="Date of Joining")
     mobile_alt = fields.Char(string="Mobile Number (Alternative)")
+    payment_mode = fields.Selection(
+        [("bank", "Bank"), ("cash", "Cash"), ("mfs", "MFS")],
+        string="Payment Mode (Bank / Cash / MFS)",
+    )
+    bank_name = fields.Char(string="Bank Name")
+    account_number = fields.Char(string="Account Number")
+    mobile_banking_number = fields.Char(string="Mobile Banking Number (if any)")
+    salary_currency_id = fields.Many2one(
+        "res.currency",
+        related="company_id.currency_id",
+        readonly=True,
+    )
+    monthly_gross_salary = fields.Monetary(
+        string="Monthly Gross Salary",
+        related="contract_id.wage",
+        currency_field="salary_currency_id",
+        readonly=True,
+        groups="hr.group_hr_user",
+    )
 
     # present address
     present_street = fields.Char(string="Street")

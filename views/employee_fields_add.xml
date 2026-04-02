@@ -52,6 +52,16 @@
             </xpath>
 
             <xpath expr="//page[@name='personal_information']/group" position="inside">
+                <group string="Salary &amp; Benefits">
+                    <field name="payment_mode"/>
+                    <field name="bank_name"/>
+                    <field name="account_number" />
+                    <field name="mobile_banking_number" />
+                    <field name="monthly_gross_salary" readonly="1"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//page[@name='personal_information']/group" position="inside">
                 <group name="documents_qualification_wrapper" colspan="2">
                     <separator string="Documents Upload" colspan="2"/>
                     <group>
