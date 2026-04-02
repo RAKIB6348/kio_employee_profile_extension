@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
-             <xpath expr="//page[@name='personal_information']//field[@name='private_email']" position="before">
+            <xpath expr="//page[@name='personal_information']//field[@name='private_email']" position="before">
                 <field name="staff_id"/>
                 <field name="full_name"/>
                 <field name="mother_name"/>
@@ -15,15 +15,19 @@
                 <field name="date_of_joining"/>
             </xpath>
 
-            <xpath expr="//page[@name='personal_information']//div[@class='o_address_format'][field[@name='private_street']]" position="after">
+            <xpath expr="//page[@name='personal_information']//div[@class='o_address_format'][field[@name='private_street']]"
+                   position="after">
                 <label for="present_street" string="Present Address"/>
                 <div class="o_address_format">
                     <field name="present_street" placeholder="Street..." class="o_address_street"/>
                     <field name="present_street2" placeholder="Street 2..." class="o_address_street"/>
                     <field name="present_city" placeholder="City" class="o_address_city"/>
-                    <field name="present_state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" context="{'default_country_id': present_country_id}"/>
+                    <field name="present_state_id" class="o_address_state" placeholder="State"
+                           options="{'no_open': True, 'no_quick_create': True}"
+                           context="{'default_country_id': present_country_id}"/>
                     <field name="present_zip" placeholder="ZIP" class="o_address_zip"/>
-                    <field name="present_country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                    <field name="present_country_id" placeholder="Country" class="o_address_country"
+                           options='{"no_open": True, "no_create": True}'/>
                 </div>
             </xpath>
 
@@ -36,7 +40,7 @@
             </xpath>
 
             <xpath expr="//page[@name='personal_information']//group[@name='emergency']" position="after">
-                <group string="Emergency Contact (Name, Relationship, Phone)">
+                <group string="Emergency Contact (Name, Relationship, Phone)" name="emergency_contact_line_group">
                     <field name="emergency_contact_line_ids">
                         <tree editable="bottom">
                             <field name="name"/>
@@ -48,22 +52,25 @@
             </xpath>
 
             <xpath expr="//page[@name='personal_information']/group" position="inside">
-                <group string="Documents Upload">
-                    <field name="resume_file" filename="resume_filename" />
-                    <field name="appointment_letter_file" filename="appointment_letter_filename" />
-                    <field name="contract_agreement_file" filename="contract_agreement_filename" />
-                    <field name="id_card" filename="id_card_filename" />
-                    <field name="passport_copy_file" filename="passport_copy_filename" />
-                    <field name="academic_certificates_file" filename="academic_certificates_filename" />
-                    <field name="photograph_file" filename="photograph_filename" />
-                    <field name="driving_license" filename="driving_license_filename"/>
-                    <field name="others_certificate_file" filename="others_certificate_filename"/>
+                <group name="documents_qualification_wrapper" colspan="2">
+                    <separator string="Documents Upload" colspan="2"/>
+                    <group>
+                        <field name="resume_file" filename="resume_filename"/>
+                        <field name="appointment_letter_file" filename="appointment_letter_filename"/>
+                        <field name="contract_agreement_file" filename="contract_agreement_filename"/>
+                        <field name="id_card" filename="id_card_filename"/>
+                    </group>
+                    <group>
+                        <field name="passport_copy_file" filename="passport_copy_filename"/>
+                        <field name="academic_certificates_file" filename="academic_certificates_filename"/>
+                        <field name="photograph_file" filename="photograph_filename"/>
+                        <field name="driving_license" filename="driving_license_filename"/>
+                        <field name="others_certificate_file" filename="others_certificate_filename"/>
+                    </group>
                 </group>
-            </xpath>
 
-            <xpath expr="//page[@name='personal_information']//group" position="after">
-                <group string="Academic &amp; Professional Qualifications">
-                    <field name="qualification_line_ids">
+                <group string="Academic &amp; Professional Qualifications" colspan="2">
+                    <field name="qualification_line_ids" mode="tree,form" nolabel="1" colspan="2">
                         <tree editable="bottom">
                             <field name="highest_education_level"/>
                             <field name="degree_certificate_name"/>
@@ -73,6 +80,17 @@
                             <field name="professional_training"/>
                             <field name="training_details"/>
                         </tree>
+                        <form>
+                            <group>
+                                <field name="highest_education_level"/>
+                                <field name="degree_certificate_name"/>
+                                <field name="institution_name"/>
+                                <field name="passing_year"/>
+                                <field name="major_subject"/>
+                                <field name="professional_training"/>
+                                <field name="training_details"/>
+                            </group>
+                        </form>
                     </field>
                 </group>
             </xpath>
