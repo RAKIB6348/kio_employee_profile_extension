@@ -36,10 +36,12 @@
 
             <xpath expr="//field[@name='private_email']" position="attributes">
                 <attribute name="string">Personal Email (optional)</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <xpath expr="//field[@name='private_phone']" position="attributes">
                 <attribute name="string">Mobile Number (Primary)</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <xpath expr="//field[@name='job_id']" position="attributes">
@@ -69,6 +71,11 @@
             <xpath expr="//label[@for='private_street']" position="attributes">
                 <attribute name="string">Permanent Address</attribute>
             </xpath>
+
+            <xpath expr="//group[@name='emergency']" position="attributes">
+                <attribute name="string">Contact Information</attribute>
+            </xpath>
+            
 
             <xpath expr="//field[@name='coach_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
