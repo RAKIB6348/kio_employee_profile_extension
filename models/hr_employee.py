@@ -111,6 +111,8 @@ class HrEmployee(models.Model):
     duration_to = fields.Date(string="Duration To")
     key_responsibilities = fields.Char(string="Key Responsibilities")
     mobile_alt = fields.Char(string="Mobile Number (Alternative)")
+    personal_email = fields.Char(string="Personal Email")
+    mobile_primary = fields.Char(string="Mobile Primary")
     payment_mode = fields.Selection(
         [("bank", "Bank"), ("cash", "Cash"), ("mfs", "MFS")],
         string="Payment Mode (Bank / Cash / MFS)",
@@ -316,3 +318,6 @@ class HrEmployee(models.Model):
         for employee in self:
             completed = sum(1 for field_name in tracked_fields if employee[field_name])
             employee.profile_completion = round((completed / total) * 100, 2) if total else 0.0
+
+    personal_email = fields.Char(string="Personal Email")
+    mobile_primary = fields.Char(string="Mobile Primary")

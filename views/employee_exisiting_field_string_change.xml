@@ -75,7 +75,12 @@
             <xpath expr="//group[@name='emergency']" position="attributes">
                 <attribute name="string">Contact Information</attribute>
             </xpath>
-            
+
+            <xpath expr="//group[@name='emergency']" position="inside">
+                <field name="personal_email"/>
+                <field name="mobile_primary"/>
+            </xpath>
+
 
             <xpath expr="//field[@name='coach_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
