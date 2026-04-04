@@ -50,6 +50,16 @@ class HrEmployeeQualification(models.Model):
     training_details = fields.Char(string="Training Details")
 
 
+class HrEmployeePreviousPosition(models.Model):
+    _name = "hr.employee.previous.position"
+    _description = "Employee Previous Position"
+
+    employee_id = fields.Many2one("hr.employee", required=True, ondelete="cascade")
+    name = fields.Char(string="Position", required=True)
+    company = fields.Char(string="Company")
+    from_date = fields.Date(string="From")
+    to_date = fields.Date(string="To")
+
 
 
 
@@ -73,6 +83,16 @@ class HrEmployee(models.Model):
         string="Employment Status",
         help="Current employment status (Active / On Leave / Resigned / Terminated).",
     )
+    employment_type = fields.Selection(
+        [
+            ("full_time", "Full-time"),
+            ("part_time", "Part-time"),
+            ("contract", "Contract"),
+            ("volunteer", "Volunteer"),
+        ],
+        string="Employment Type",
+        help="Employment type (Full-time / Part-time / Contract / Volunteer).",
+    )
     profile_completion = fields.Float(
         string="Profile Completion %",
         compute="_compute_profile_completion",
@@ -82,9 +102,10 @@ class HrEmployee(models.Model):
     previous_organization_name = fields.Char(string="Previous Organization Name")
     previous_designation = fields.Char(string="Previous Designation")
     work_location = fields.Char(string="Work Location")
-    previous_position = fields.Text(
+    previous_position = fields.One2many(
+        "hr.employee.previous.position",
+        "employee_id",
         string="Previous Positions",
-        help="Enter multiple previous positions, one per line.",
     )
     duration_from = fields.Date(string="Duration From")
     duration_to = fields.Date(string="Duration To")
@@ -177,6 +198,7 @@ class HrEmployee(models.Model):
         "father_name",
         "date_of_joining",
         "employment_status",
+        "employment_type",
         "private_email",
         "private_street",
         "private_city",
@@ -242,6 +264,7 @@ class HrEmployee(models.Model):
             "father_name",
             "date_of_joining",
             "employment_status",
+            "employment_type",
             "private_email",
             "private_street",
             "private_city",

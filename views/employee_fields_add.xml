@@ -29,6 +29,7 @@
                 <field name="father_name"/>
                 <field name="date_of_joining"/>
                 <field name="employment_status" readonly="1"/>
+                <field name="employment_type"/>
             </xpath>
 
             <xpath expr="//page[@name='personal_information']//div[@class='o_address_format'][field[@name='private_street']]"
@@ -125,7 +126,14 @@
                     <field name="previous_organization_name"/>
                     <field name="previous_designation"/>
                     <field name="work_location"/>
-                    <field name="previous_position" placeholder="Enter one previous position per line..." widget="text"/>
+                    <field name="previous_position">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="company"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </tree>
+                    </field>
                     <field name="duration_from"/>
                     <field name="duration_to"/>
                     <field name="key_responsibilities"/>

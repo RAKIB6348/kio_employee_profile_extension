@@ -3,3 +3,4 @@ access_hr_employee_child_user,hr.employee.child user,model_hr_employee_child,hr.
 access_hr_employee_child_education_user,hr.employee.child.education user,model_hr_employee_child_education,hr.group_hr_user,1,1,1,1
 access_hr_employee_emergency_contact_user,hr.employee.emergency.contact user,model_hr_employee_emergency_contact,hr.group_hr_user,1,1,1,1
 access_hr_employee_qualification_user,hr.employee.qualification user,model_hr_employee_qualification,hr.group_hr_user,1,1,1,1
+access_hr_employee_previous_position_user,hr.employee.previous.position user,model_hr_employee_previous_position,hr.group_hr_user,1,1,1,1
