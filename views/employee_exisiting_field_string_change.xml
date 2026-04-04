@@ -60,8 +60,6 @@
 
 
 
-
-
             <!-- Change Group Title -->
             <xpath expr="//page[@name='personal_information']/group/group[1]" position="attributes">
                 <attribute name="string">Basic Info</attribute>

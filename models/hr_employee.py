@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class HrEmployeeChild(models.Model):
@@ -50,6 +50,9 @@ class HrEmployeeQualification(models.Model):
     training_details = fields.Char(string="Training Details")
 
 
+
+
+
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
@@ -60,6 +63,32 @@ class HrEmployee(models.Model):
 
     emergency_contact_relationship = fields.Char(string="Emergency Contact Relationship")
     date_of_joining = fields.Datetime(string="Date of Joining")
+    employment_status = fields.Selection(
+        [
+            ("active", "Active"),
+            ("on_leave", "On Leave"),
+            ("resigned", "Resigned"),
+            ("terminated", "Terminated"),
+        ],
+        string="Employment Status",
+        help="Current employment status (Active / On Leave / Resigned / Terminated).",
+    )
+    profile_completion = fields.Float(
+        string="Profile Completion %",
+        compute="_compute_profile_completion",
+        help="Percentage of completed employee profile fields.",
+    )
+    total_years_experience = fields.Float(string="Total Years of Experience")
+    previous_organization_name = fields.Char(string="Previous Organization Name")
+    previous_designation = fields.Char(string="Previous Designation")
+    work_location = fields.Char(string="Work Location")
+    previous_position = fields.Text(
+        string="Previous Positions",
+        help="Enter multiple previous positions, one per line.",
+    )
+    duration_from = fields.Date(string="Duration From")
+    duration_to = fields.Date(string="Duration To")
+    key_responsibilities = fields.Char(string="Key Responsibilities")
     mobile_alt = fields.Char(string="Mobile Number (Alternative)")
     payment_mode = fields.Selection(
         [("bank", "Bank"), ("cash", "Cash"), ("mfs", "MFS")],
@@ -130,3 +159,137 @@ class HrEmployee(models.Model):
         "employee_id",
         string="Academic & Professional Qualifications",
     )
+
+    @api.depends(
+        "name",
+        "company_id",
+        "job_id",
+        "work_email",
+        "work_phone",
+        "mobile_phone",
+        "job_title",
+        "department_id",
+        "parent_id",
+        "coach_id",
+        "staff_id",
+        "full_name",
+        "mother_name",
+        "father_name",
+        "date_of_joining",
+        "employment_status",
+        "private_email",
+        "private_street",
+        "private_city",
+        "private_state_id",
+        "private_country_id",
+        "private_phone",
+        "mobile_alt",
+        "present_street",
+        "present_street2",
+        "present_city",
+        "present_state_id",
+        "present_zip",
+        "present_country_id",
+        "gender",
+        "birthday",
+        "marital",
+        "spouse_complete_name",
+        "children",
+        "total_dependents",
+        "visa_no",
+        "permit_no",
+        "payment_mode",
+        "bank_name",
+        "account_number",
+        "mobile_banking_number",
+        "identification_id",
+        "passport_id",
+        "resume_filename",
+        "appointment_letter_filename",
+        "contract_agreement_filename",
+        "id_card_filename",
+        "passport_copy_filename",
+        "academic_certificates_filename",
+        "photograph_filename",
+        "driving_license_filename",
+        "others_certificate_filename",
+        "resume_file",
+        "spouse_occupation",
+        "total_years_experience",
+        "previous_organization_name",
+        "previous_designation",
+        "work_location",
+        "previous_position",
+        "duration_from",
+        "duration_to",
+        "key_responsibilities",
+    )
+    def _compute_profile_completion(self):
+        tracked_fields = [
+            "name",
+            "company_id",
+            "job_id",
+            "work_email",
+            "work_phone",
+            "mobile_phone",
+            "job_title",
+            "department_id",
+            "parent_id",
+            "coach_id",
+            "staff_id",
+            "full_name",
+            "mother_name",
+            "father_name",
+            "date_of_joining",
+            "employment_status",
+            "private_email",
+            "private_street",
+            "private_city",
+            "private_state_id",
+            "private_country_id",
+            "private_phone",
+            "mobile_alt",
+            "present_street",
+            "present_street2",
+            "present_city",
+            "present_state_id",
+            "present_zip",
+            "present_country_id",
+            "gender",
+            "birthday",
+            "marital",
+            "spouse_complete_name",
+            "children",
+            "total_dependents",
+            "visa_no",
+            "permit_no",
+            "payment_mode",
+            "bank_name",
+            "account_number",
+            "mobile_banking_number",
+            "identification_id",
+            "passport_id",
+            "resume_filename",
+            "appointment_letter_filename",
+            "contract_agreement_filename",
+            "id_card_filename",
+            "passport_copy_filename",
+            "academic_certificates_filename",
+            "photograph_filename",
+            "driving_license_filename",
+            "others_certificate_filename",
+            "resume_file",
+            "spouse_occupation",
+            "total_years_experience",
+            "previous_organization_name",
+            "previous_designation",
+            "work_location",
+            "previous_position",
+            "duration_from",
+            "duration_to",
+            "key_responsibilities",
+        ]
+        total = len(tracked_fields)
+        for employee in self:
+            completed = sum(1 for field_name in tracked_fields if employee[field_name])
+            employee.profile_completion = round((completed / total) * 100, 2) if total else 0.0
