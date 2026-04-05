@@ -7,7 +7,9 @@
         <field name="inherit_id" ref="hr.view_employee_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//search/field[@name='name']" position="attributes">
-                <attribute name="filter_domain">['|', '|', ('work_email', 'ilike', self), ('name', 'ilike', self), ('staff_id', 'ilike', self)]</attribute>
+                <attribute name="filter_domain">['|', '|', ('work_email', 'ilike', self), ('name', 'ilike', self),
+                    ('staff_id', 'ilike', self)]
+                </attribute>
             </xpath>
         </field>
     </record>
@@ -72,8 +74,8 @@
                 <group string="Salary &amp; Benefits">
                     <field name="payment_mode"/>
                     <field name="bank_name"/>
-                    <field name="account_number" />
-                    <field name="mobile_banking_number" />
+                    <field name="account_number"/>
+                    <field name="mobile_banking_number"/>
                     <field name="monthly_gross_salary" readonly="1"/>
                 </group>
             </xpath>
@@ -167,6 +169,66 @@
                         <field name="school_name"/>
                     </tree>
                 </field>
+            </xpath>
+
+            <!-- Header Buttons -->
+            <xpath expr="//form/header" position="inside">
+
+                <!-- Showcause Button: Only show when not active -->
+                <button
+                        name="action_employee_showcause"
+                        type="object"
+                        string="Showcause"
+                        class="btn-warning"
+                        invisible="showcause_active"
+                />
+
+                <!-- Remove Showcause Button: Only show when active -->
+                <button
+                        name="action_employee_clear_showcause"
+                        type="object"
+                        string="Remove Showcause"
+                        class="btn-success"
+                        invisible="not showcause_active"
+                />
+            </xpath>
+            <xpath expr="//form/sheet" position="inside">
+                <field name="showcause_active" invisible="1"/>
+            </xpath>
+
+            <!-- Showcause ribbon on form view, placed next to Archived ribbon -->
+            <xpath expr="//form/sheet/widget[@name='web_ribbon'][1]" position="after">
+                <widget
+                        name="web_ribbon"
+                        title="Showcause"
+                        bg_color="text-bg-danger"
+                        invisible="not showcause_active"
+                />
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <!-- === NEW: KANBAN VIEW RIBBON === -->
+    <record id="view_employee_kanban_inherit_showcause" model="ir.ui.view">
+        <field name="name">hr.employee.kanban.showcause.ribbon</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+
+            <!-- 1) ফিল্ডটাকে kanban context এ আনা -->
+            <xpath expr="//kanban" position="inside">
+                <field name="showcause_active" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//kanban/templates/t/div" position="inside">
+                <widget
+                        name="web_ribbon"
+                        title="Showcause"
+                        bg_color="text-bg-warning"
+                        invisible="not showcause_active"
+                />
             </xpath>
 
         </field>

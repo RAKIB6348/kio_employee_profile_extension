@@ -183,6 +183,20 @@ class HrEmployee(models.Model):
         string="Academic & Professional Qualifications",
     )
 
+    showcause_active = fields.Boolean(string="Showcause Active", default=False)
+
+    def action_employee_showcause(self):
+        """Mark employee as showcause"""
+        for rec in self:
+            rec.showcause_active = True
+        return True
+
+    def action_employee_clear_showcause(self):
+        """Clear showcause from employee"""
+        for rec in self:
+            rec.showcause_active = False
+        return True
+
     @api.depends(
         "name",
         "company_id",
